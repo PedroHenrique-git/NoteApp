@@ -15,7 +15,7 @@
 </p>
 
 <p align="left">
-    Clonar projeto: git clone https://github.com/PedroHenrique-git/GeradorDeCpf.git
+    Clonar projeto: git clone https://github.com/PedroHenrique-git/NoteApp.git
 </p>
 
 <img src="Desktop.png"/>
