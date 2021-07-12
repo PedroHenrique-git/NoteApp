@@ -1,0 +1,17 @@
+@import url('./tasks_wrap.css');
+@import url('./add_task-modal.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+html {
+    background: url('../images/background.jpg') fixed center center no-repeat;
+    background-size: cover;
+}
+
+html, body {
+    width: 100%;
+}

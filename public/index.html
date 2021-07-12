@@ -2,19 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../src/assets/css/main.css" rel="stylesheet" >
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Note app</title>
+    <script defer src="./assets/js/bundle.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Simple trello</title>
 </head>
 <body>
-    <header class="header">
-        <h1>Note app</h1>
-        <button id="addNote">Adicionar nota</button>
-    </header>
-
-    <main class="note-container">  
+    <main class="main_container">
+        <section class="tasks_wrap">
+            <div class="tasks_wrap-title">
+                <h1>Control your tasks</h1>
+            </div>
+            <div class="tasks_wrap-content">
+                <div class="tasks_container to_do">
+                    <div class="tasks_container-title">
+                        <h2>To Do</h2>
+                    </div>
+                    <div class="add_task_container">
+                        <button class="btn btn_to-do" type="button">Adicionar tarefa</button>
+                        <ul class="tasks_to-do"></ul>
+                    </div>
+                </div>
+                <div class="tasks_container pending">
+                    <div class="tasks_container-title">
+                        <h2>Pending</h2>
+                    </div>
+                    <div class="add_task_container">
+                        <button class="btn btn_pending" type="button">Adicionar tarefa</button>
+                        <ul class="tasks_pending"></ul>
+                    </div>
+                </div>
+                <div class="tasks_container doing">
+                    <div class="tasks_container-title">
+                        <h2>Doing</h2>
+                    </div>
+                    <div class="add_task_container">
+                        <button class="btn btn_doing" type="button">Adicionar tarefa</button>
+                        <ul class="tasks_doing"></ul>
+                    </div>
+                </div>
+                <div class="tasks_container done">
+                    <div class="tasks_container-title">
+                        <h2>Done</h2>
+                    </div>
+                    <div class="add_task_container">
+                        <button class="btn btn_done" type="button">Adicionar tarefa</button>
+                        <ul class="tasks_done"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    <script src="./assets/js/bundle.js"></script>  
+
+    <div class="add_task-modal">
+        <div class="add_task-modal-content">
+            <h1>Enter with the new task</h1>
+            <form class="form_add-task">
+                <textarea wrap="off" cols="30" rows="5" placeholder="Enter with your task" name="task" id="task"></textarea>
+                <button type="submit">Create task</button>
+            </form>
+            <div class="close_modal">X</div>
+        </div>
+    </div>
 </body>
 </html>
