@@ -1,3 +1,3 @@
-#simple trello
+# Simple trello
 
 in production...
