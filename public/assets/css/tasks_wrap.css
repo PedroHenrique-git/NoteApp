@@ -44,6 +44,17 @@
         justify-content: center;
     }
 
+    .dropzone {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+        .none {
+            display: flex;
+            align-items: center;
+            justify-content: center !important;
+        }
+
     .tasks_container ul {
         width: 100%;
     }
@@ -58,6 +69,11 @@
         justify-content: space-between;
         font-size: 1.2em;
     }
+
+        .tasks_container ul li:first-of-type {
+            margin: 0;
+        }
+
         .tasks_container ul li .task_actions {
             display: flex;
         }

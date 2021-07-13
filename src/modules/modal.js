@@ -9,7 +9,7 @@ export const hideModal = () => {
 };
 
 export const setTargetList = (targeList) => {
-    modal.setAttribute('target-list', targeList);
+    modal.setAttribute('target-list', targeList.split(' ')[0]);
 };
 
 export const getTargetList = () => {

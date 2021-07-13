@@ -1,5 +1,6 @@
 import iconGenerator from "./iconGenerator";
 import { createLi, createBtn, createDiv } from './createElements';
+import idGenerator from "./idGenerator";
 
 export function createTask(task) {
     const li = createLi();
@@ -22,6 +23,10 @@ export function createTask(task) {
     div.appendChild(btn2);
 
     li.appendChild(div);
+
+    li.className = "task drag-item";
+    li.id = idGenerator(0, 100000); 
+    li.draggable = true;
 
     return li;
 }
