@@ -13,10 +13,19 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
 
     document.addEventListener('click', (e) => {
         const target = e.target;
+
         if( target.classList.contains('btn') ) {
             const list = target.nextElementSibling;
             setTargetList(list.className)
             showModal();
+        }
+
+        if( target.classList.contains('delete_icon') ) {
+            target
+                .parentNode
+                .parentNode
+                .parentNode
+                .remove();
         }
     });
 
@@ -49,9 +58,16 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
         if( target.classList.contains('dropzone') ) {
             const noneLi = document.querySelector(`.${target.classList[0]} .none`);
             const data = e.dataTransfer.getData('text/html');
-            target.appendChild(document.getElementById(data));
+            const dropedElement = document.getElementById(data);
+            dropedElement.setAttribute('parent', target.classList[0]);
+            target.appendChild(dropedElement);
             target.classList.remove('drop');
-            noneLi.remove();
+
+            if ( noneLi ) {
+                noneLi.remove();
+            }
+
+            setDataInLocalStorage();
         }
     });
 
@@ -66,12 +82,16 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const textarea = this.querySelector('textarea');
-        const task = createTask(textarea.value);
-        const target = document.querySelector(`.${getTargetList()}`);
         const noneLi = document.querySelector(`.${getTargetList()} .none`);
-        addTask(target, task);
+        const task = createTask(textarea.value, getTargetList());
+        addTask(getTargetList(), task);
         hideModal(); 
-        noneLi.remove();
+
+        if ( noneLi ) {
+            noneLi.remove();
+        }
+
+        setDataInLocalStorage();
     });
 
     modal.addEventListener('click', (e) => {
@@ -79,5 +99,38 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
             hideModal(); 
         }
     });
+
+    window.addEventListener('load', renderData());
+
+    // FUNCTIONS
+
+    function setDataInLocalStorage() {
+        const lis = document.querySelectorAll('li');
+        const dataLi = [];
+        
+        lis.forEach(li => {
+            if ( !li.classList.contains('none') ) {
+                dataLi.push({
+                    id: li.id,
+                    parent: li.getAttribute('parent'),
+                    content: li.querySelector('p').innerText,
+                });  
+            }
+        });
+        
+        localStorage.setItem('tasks', JSON.stringify(dataLi));
+    }
+
+    function renderData() {
+        const lis = JSON.parse(localStorage.getItem('tasks'));
+        console.log(lis);
+
+        if ( !lis ) return;
+
+        lis.forEach(li => {
+            const task = createTask(li.content, li.parent, li.id);
+            addTask(li.parent, task);
+        });
+    }
 
 })();
