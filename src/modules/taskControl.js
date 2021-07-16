@@ -4,7 +4,10 @@ import idGenerator from "./idGenerator";
 
 export function createTask(task, parent, id = idGenerator(0, 100000)) {
     const li = createLi();
-    li.innerHTML = '<p>' + task + '</p>';
+
+    const content = createDiv('content');
+    content.classList.add('task_content');
+    content.innerText = task;
 
     const div = createDiv('task_actions');
     div.classList.add('task_actions');
@@ -22,6 +25,7 @@ export function createTask(task, parent, id = idGenerator(0, 100000)) {
     div.appendChild(btn1);
     div.appendChild(btn2);
 
+    li.appendChild(content);
     li.appendChild(div);
 
     li.className = "task drag-item";

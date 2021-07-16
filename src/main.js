@@ -1,31 +1,52 @@
 import '../public/assets/css/index.css';
-import './modules/modal';
 import { addTask, createTask } from './modules/taskControl';
-import { hideModal, modal, setTargetList, showModal, getTargetList } from './modules/modal';
+import { hideModal, getTargetList } from './modules/modal';
+import { renderData, setDataInLocalStorage } from './modules/localStorage';
+import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
 
 
 (function() {
+
     // Selectors
 
     const form = document.querySelector('.form_add-task');
+    const closeModalBtn = document.querySelector('.close_modal');
 
-    // Listerners
+    // document and window listeners
+
+    window.addEventListener('DOMContentLoaded', renderData);
+
+    closeModalBtn.addEventListener('click', () => {
+        const textarea = document.querySelector('#task');
+        textarea.value = '';
+        hideModal();
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const textarea = this.querySelector('textarea');
+        const task = createTask(textarea.value, getTargetList());
+        addTask(getTargetList(), task);
+        hideModal(); 
+        setDataInLocalStorage();
+        textarea.value = '';
+    });
 
     document.addEventListener('click', (e) => {
         const target = e.target;
 
         if( target.classList.contains('btn') ) {
-            const list = target.nextElementSibling;
-            setTargetList(list.className)
-            showModal();
+            openModal(target);
         }
 
         if( target.classList.contains('delete_icon') ) {
-            target
-                .parentNode
-                .parentNode
-                .parentNode
-                .remove();
+            const liTarget = target.parentNode.parentNode.parentNode;
+            deleteTask(liTarget);
+        }
+
+        if( target.classList.contains('edit_icon') ) {
+            const liTarget = target.parentNode.parentNode.parentNode;
+            editTask(liTarget);   
         }
     });
 
@@ -56,16 +77,12 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
         e.preventDefault();
         const target = e.target;
         if( target.classList.contains('dropzone') ) {
-            const noneLi = document.querySelector(`.${target.classList[0]} .none`);
             const data = e.dataTransfer.getData('text/html');
             const dropedElement = document.getElementById(data);
+
             dropedElement.setAttribute('parent', target.classList[0]);
             target.appendChild(dropedElement);
             target.classList.remove('drop');
-
-            if ( noneLi ) {
-                noneLi.remove();
-            }
 
             setDataInLocalStorage();
         }
@@ -78,59 +95,5 @@ import { hideModal, modal, setTargetList, showModal, getTargetList } from './mod
             target.classList.remove('drop');
         }
     });
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const textarea = this.querySelector('textarea');
-        const noneLi = document.querySelector(`.${getTargetList()} .none`);
-        const task = createTask(textarea.value, getTargetList());
-        addTask(getTargetList(), task);
-        hideModal(); 
-
-        if ( noneLi ) {
-            noneLi.remove();
-        }
-
-        setDataInLocalStorage();
-    });
-
-    modal.addEventListener('click', (e) => {
-        if ( e.target.classList.contains('close_modal') ) {
-            hideModal(); 
-        }
-    });
-
-    window.addEventListener('load', renderData());
-
-    // FUNCTIONS
-
-    function setDataInLocalStorage() {
-        const lis = document.querySelectorAll('li');
-        const dataLi = [];
-        
-        lis.forEach(li => {
-            if ( !li.classList.contains('none') ) {
-                dataLi.push({
-                    id: li.id,
-                    parent: li.getAttribute('parent'),
-                    content: li.querySelector('p').innerText,
-                });  
-            }
-        });
-        
-        localStorage.setItem('tasks', JSON.stringify(dataLi));
-    }
-
-    function renderData() {
-        const lis = JSON.parse(localStorage.getItem('tasks'));
-        console.log(lis);
-
-        if ( !lis ) return;
-
-        lis.forEach(li => {
-            const task = createTask(li.content, li.parent, li.id);
-            addTask(li.parent, task);
-        });
-    }
 
 })();
