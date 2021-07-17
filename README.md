@@ -20,7 +20,7 @@ execute the command: <b>npm i</b>
 
 ### Executing program
 
-open the file: `index.html`
+open the file: `index.html`<br/>
 execute the command, for edit js and css: <b>npm run dev</b>
 
 ## Authors
