@@ -13,12 +13,12 @@ export function createTask(task, parent, id = idGenerator(0, 100000)) {
     div.classList.add('task_actions');
 
     const btn1 = createBtn('delete_btn');
-    const deleteIcon = iconGenerator('delete');
+    const deleteIcon = iconGenerator('clear');
     deleteIcon.classList.add('delete_icon');
     btn1.appendChild(deleteIcon);
 
     const btn2 = createBtn('edit_btn');
-    const editIcon = iconGenerator('edit_note');
+    const editIcon = iconGenerator('edit');
     editIcon.classList.add('edit_icon');
     btn2.appendChild(editIcon);
 

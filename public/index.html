@@ -12,18 +12,20 @@
     <title>Simple trello</title>
 </head>
 <body>
+    <header class="menu_header">
+        <div class="menu_header-conteudo">
+            <h1>Drag and Drop - To Do List</h1>
+        </div>
+    </header>
     <main class="main_container">
         <section class="tasks_wrap">
-            <div class="tasks_wrap-title">
-                <h1>Control your tasks</h1>
-            </div>
             <div class="tasks_wrap-content">
                 <div class="tasks_container to_do">
                     <div class="tasks_container-title">
                         <h2>To Do</h2>
                     </div>
                     <div class="add_task_container">
-                        <button class="btn btn_to-do" type="button">add card</button>
+                        <button class="btn btn_to-do" type="button">add task</button>
                         <ul class="tasks_to-do dropzone"></ul>
                     </div>
                 </div>
@@ -32,7 +34,7 @@
                         <h2>Pending</h2>
                     </div>
                     <div class="add_task_container">
-                        <button class="btn btn_pending" type="button">add card</button>
+                        <button class="btn btn_pending" type="button">add task</button>
                         <ul class="tasks_pending dropzone"></ul>
                     </div>
                 </div>
@@ -41,7 +43,7 @@
                         <h2>Doing</h2>
                     </div>
                     <div class="add_task_container">
-                        <button class="btn btn_doing" type="button">add card</button>
+                        <button class="btn btn_doing" type="button">add task</button>
                         <ul class="tasks_doing dropzone"></ul>
                     </div>
                 </div>
@@ -50,7 +52,7 @@
                         <h2>Done</h2>
                     </div>
                     <div class="add_task_container">
-                        <button class="btn btn_done" type="button">add card</button>
+                        <button class="btn btn_done" type="button">add task</button>
                         <ul class="tasks_done dropzone"></ul>
                     </div>
                 </div>
@@ -62,7 +64,7 @@
         <div class="add_task-modal-content">
             <h1>Enter with the new task</h1>
             <form class="form_add-task">
-                <textarea wrap="off" cols="30" rows="5" placeholder="Enter with your task" name="task" id="task"></textarea>
+                <textarea placeholder="Enter with your task" name="task" id="task"></textarea>
                 <button type="submit">Create task</button>
             </form>
             <div class="close_modal" >X</div>

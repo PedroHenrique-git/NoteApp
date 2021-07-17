@@ -1,0 +1,15 @@
+.menu_header {
+    border-bottom: 1px solid #d9d9ed;
+    background: #1da3c7;
+    padding: 25px;
+}
+    .menu_header-conteudo {
+        max-width: 1700px;
+        margin: 0 auto;
+        padding: 0 25px;
+    }
+
+    .menu_header-conteudo h1 {
+        font-size: 1.6em;
+        color: #fffbf4;
+    }

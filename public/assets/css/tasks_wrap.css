@@ -1,19 +1,12 @@
 .tasks_wrap {
-    background: rgba(0, 0, 0, 0.5);;
-    max-width: 1400px;
+    max-width: 1700px;
     margin: 80px auto 0 auto;
-    padding: 30px;
+    padding: 0 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
-    .tasks_wrap-title  h1{
-        color: #fff;
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 1.8em;
-    }
 
 .tasks_wrap-content {
     display: flex;
@@ -22,11 +15,15 @@
 }
 
     .tasks_container {
+        background: #fffaf2;
+        border-radius: 10px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        padding: 25px;
+        padding: 15px;
+        position: relative;
+        margin-right: 15px;
 
         width: 100%;
     }
@@ -36,17 +33,29 @@
     }
 
     .add_task_container {
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        position: relative;
+        width: 100%;
     }
 
     .dropzone {
+        box-sizing: border-box;
         padding: 20px;
         margin-top: 20px;
+        max-height: 600px;
+        overflow-y: auto;
     }
+
+        .drag-item:hover {
+            cursor: grab;
+        }
+
+        .drag-item:active {
+            cursor: grabbing;
+        }
 
         .none {
             display: flex;
@@ -58,16 +67,43 @@
         width: 100%;
     }
 
+    .tasks_container ul::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .tasks_container ul::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px grey; 
+        border-radius: 10px;
+    }
+
+    .tasks_container ul::-webkit-scrollbar-thumb {
+        background: #8a8887; 
+        border-radius: 10px;
+    }
+
     .tasks_container ul li {
-        background: #fff;
-        color: #3b3a3a;
+        background: #e2e2e2;
+        border-radius: 10px;
+        color: #15161c;
         list-style: none;
-        padding: 5px;
+        padding: 10px;
         margin-top: 15px;
         display: flex;
         justify-content: space-between;
         font-size: 1.2em;
     }
+
+        .task_content {
+            word-break: break-all;
+            padding-right: 10px;
+        }
+
+        .task_content:focus {
+            border: 1px solid #8a8887;
+            border-radius: 10px;
+            outline: none;
+            padding: 5px;
+        }
 
         .tasks_container ul li:first-of-type {
             margin: 0;
@@ -75,6 +111,9 @@
 
         .tasks_container ul li .task_actions {
             display: flex;
+            align-items: center;
+            border-left: 1px solid #15161c;
+            padding-left: 10px;
         }
 
         .tasks_container ul li .task_actions button {
@@ -94,7 +133,7 @@
             }
 
         .add_task_container button {
-            background: #729e0c;
+            background: #179f86;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -103,10 +142,16 @@
             margin-top: 20px;
             text-transform: uppercase;
             font-size: 1.1em;
+            width: 100%;
+        }
+
+        .add_task_container button:hover {
+            background: #0e5e4f;
+            transition: all .5s ease; 
         }
 
         .tasks_container-title h2 {
-            color: #fff;
+            color: #625d55;
             text-align: center;
             text-transform: uppercase;
             font-size: 1.4em;    

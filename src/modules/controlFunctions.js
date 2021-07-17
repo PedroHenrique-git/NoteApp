@@ -14,6 +14,7 @@ export function deleteTask(target) {
 
 export function editTask(target) {
     const content = target.querySelector('.content');
+    const oldValue = content.innerText; 
     content.setAttribute('contenteditable', 'true');
     content.focus();
 
@@ -22,7 +23,10 @@ export function editTask(target) {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const index = tasks.findIndex((task) => task.id === target.id);
 
-        if( index === - 1 ) return;
+        if( index === - 1 || this.innerText === '' ) {
+            this.innerText = oldValue;
+            return; 
+        }
 
         tasks[index].content = this.innerText;
         setDataInLocalStorage();

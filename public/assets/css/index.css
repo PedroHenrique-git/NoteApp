@@ -1,21 +1,22 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-html {
-    background: url('../images/background.jpg') fixed center center no-repeat;
-    background-size: cover;
-}
-
-html, body {
+html, body, header {
     width: 100%;
 }
 
+body {
+    background: #001e38;
+}
+
 .drop {
-    border: 1px dashed #000;
+    border: 2.5px dashed #001e38;
 }
 
 @import url('./tasks_wrap.css');
 @import url('./add_task-modal.css');
+@import url('./header.css');

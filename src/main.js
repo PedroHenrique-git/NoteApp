@@ -12,7 +12,7 @@ import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
     const form = document.querySelector('.form_add-task');
     const closeModalBtn = document.querySelector('.close_modal');
 
-    // document and window listeners
+    // listeners
 
     window.addEventListener('DOMContentLoaded', renderData);
 
@@ -25,6 +25,10 @@ import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const textarea = this.querySelector('textarea');
+        if( textarea.value === '' ) {
+            hideModal(); 
+            return;
+        }
         const task = createTask(textarea.value, getTargetList());
         addTask(getTargetList(), task);
         hideModal(); 
@@ -50,9 +54,14 @@ import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
         }
     });
 
+    
+
     document.addEventListener('dragstart', (e) => {
         const target = e.target;
         if ( target.classList.contains('drag-item')  ) {
+            setTimeout(() => {
+                target.style.display = 'none';
+            }, 0);
             e.dataTransfer.setData('text/html', target.id);
         }
     });
@@ -81,6 +90,7 @@ import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
             const dropedElement = document.getElementById(data);
 
             dropedElement.setAttribute('parent', target.classList[0]);
+            dropedElement.style.display = 'flex';
             target.appendChild(dropedElement);
             target.classList.remove('drop');
 
@@ -95,5 +105,5 @@ import { openModal, deleteTask, editTask  } from './modules/controlFunctions';
             target.classList.remove('drop');
         }
     });
-
+    
 })();
