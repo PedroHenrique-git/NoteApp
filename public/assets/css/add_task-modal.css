@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
 
-    display: flex;
+    display: none;
 
     flex-direction: column;
     justify-content: center;
@@ -93,3 +93,15 @@
         height: 200px;
         width: 400px;
     }
+
+@media (max-width: 640px) {
+    .add_task-modal-content {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    textarea {
+        height: 300px;
+        width: 300px;    
+    }
+}

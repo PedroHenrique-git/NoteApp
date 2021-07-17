@@ -156,3 +156,22 @@
             text-transform: uppercase;
             font-size: 1.4em;    
         }
+
+@media (max-width: 640px) {
+    .tasks_wrap-content {
+        flex-direction: column;
+    }
+
+    .tasks_container {
+        margin-right: 0;
+        margin-top: 25px;
+    }
+
+    .tasks_container:first-of-type {
+        margin-top: 0;
+    }
+
+    .tasks_wrap {   
+        margin: 30px auto;    
+    }
+}
