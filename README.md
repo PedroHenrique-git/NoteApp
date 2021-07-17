@@ -1,3 +1,3 @@
-# Simple trello
+# Drag and drop to do list
 
 in production...
